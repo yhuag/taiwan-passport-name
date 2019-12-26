@@ -36,42 +36,25 @@ exports.translateViaWeb = async function (chinese_name) {
 
 exports.translatePinyin = async function (chinese_name) {
 
-  fs.createReadStream('pinyinToWG.csv')
-    .pipe(csv())
-    .on('data', (data) => results.push(data))
-    .on('end', () => {
-      // console.log(results);
+  return new Promise((resolve, reject) => {
+    fs.createReadStream('pinyinToWG.csv')
+      .pipe(csv())
+      .on('data', (data) => results.push(data))
+      .on('end', () => {
 
-      // console.log(results);
+        // Get Pin Yin format from raw a chinese name
+        var pinyinResultArray = pinyin(chinese_name, { style: pinyin.STYLE_NORMAL, heteronym: false });
 
-      // Get Pin Yin format from raw a chinese name
-      var pinyinResultArray = pinyin(chinese_name, { style: pinyin.STYLE_NORMAL, heteronym: false });
+        var finalResult = []
+        // Iterate through each Pin Yin character to get its matched WG character
+        pinyinResultArray.forEach(function (pinyinTarget) {
+          finalResult.push(results.find(element => element['0'] === pinyinTarget[0].toUpperCase())['1']);
+        });
 
-      // console.log(pinyinResultArray);
-      // console.log(results);
+        var res = finalResult.join(" ");
 
-      var finalResult = []
-
-      // Iterate through each Pin Yin character to get its matched WG character
-      pinyinResultArray.forEach(function (pinyinTarget) {
-        // console.log(pinyinTarget[0].toUpperCase());
-        finalResult.push(results.find(element => element['0'] === pinyinTarget[0].toUpperCase())['1']);
+        resolve(res)
       });
-
-      // console.log(finalResult.join(" "));
-
-      var res = finalResult.join(" ");
-      console.log("RES:", res);
-
-      // resolve(finalResult.join(" "));
-
-      return res;
-
-      // return new Promise((resolve, reject) => {
-      //   resolve(res);
-      // });
-
-    });
-
+  });
 
 }
