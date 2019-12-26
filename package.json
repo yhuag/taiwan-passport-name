@@ -1,6 +1,6 @@
 {
   "name": "taiwan-passport-name",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "To convert your Chinese name into official Taiwanese passport name in English",
   "main": "index.js",
   "scripts": {
