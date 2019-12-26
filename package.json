@@ -1,0 +1,33 @@
+{
+  "name": "taiwan-passport-name",
+  "version": "1.0.7",
+  "description": "To convert your Chinese name into official Taiwanese passport name in English",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yhuag (jeffhu@berkeley.edu)",
+  "keywords": [
+    "taiwan",
+    "roc",
+    "chinese",
+    "passport",
+    "name",
+    "translation",
+    "convert",
+    "WG",
+    "Wade–Giles",
+    "Wade Giles",
+    "China"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^2.3.2",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
+    "pinyin": "^2.9.0",
+    "request": "^2.88.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
+  }
+}
