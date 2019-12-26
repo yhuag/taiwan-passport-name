@@ -34,7 +34,7 @@ exports.translateViaWeb = async function (chinese_name) {
   });
 }
 
-exports.translatePinyin = async function (chinese_name) {
+exports.translate = async function (chinese_name) {
 
   return new Promise((resolve, reject) => {
     fs.createReadStream('pinyinToWG.csv')
