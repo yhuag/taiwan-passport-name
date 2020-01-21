@@ -47,9 +47,17 @@ exports.translate = async function (chinese_name) {
 
         var finalResult = []
         // Iterate through each Pin Yin character to get its matched WG character
+        // pinyinResultArray.forEach(function (pinyinTarget) {
+        //   finalResult.push(results.find(element => element['0'] === pinyinTarget[0].toUpperCase())['1']);
+        // });
         pinyinResultArray.forEach(function (pinyinTarget) {
-          finalResult.push(results.find(element => element['0'] === pinyinTarget[0].toUpperCase())['1']);
+          let tmp = results.find(element => element['0'] === pinyinTarget[0].toUpperCase())
+          if (!tmp) {
+            finalResult.push(pinyinTarget[0].toUpperCase())
+          }
+          else finalResult.push(tmp['1']);
         });
+
 
         var res = finalResult.join(" ");
 
